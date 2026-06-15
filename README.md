@@ -1,4 +1,4 @@
-# 📦 Hack The Box — Starting Point Labs
+# Hack The Box — Starting Point Labs
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Hack%20The%20Box-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" />
@@ -7,11 +7,11 @@
   <img src="https://img.shields.io/badge/Machines%20Completed-8-blue?style=for-the-badge" />
 </p>
 
-> 🎯 Hack The Box Starting Point writeups covering **8 machines** across Tier 0 and Tier 1 — demonstrating practical offensive security skills including network reconnaissance, service enumeration, FTP/Telnet/SMB exploitation, SQL injection, database enumeration, and authentication attacks.
+> Hack The Box Starting Point writeups covering **8 machines** across Tier 0 and Tier 1 — demonstrating practical offensive security skills including network reconnaissance, service enumeration, FTP/Telnet/SMB exploitation, SQL injection, database enumeration, and authentication attacks.
 
 ---
 
-## 📌 Overview
+## Overview
 
 This repository documents my completed **Hack The Box Starting Point** labs as part of my M.S. Cybersecurity studies. Each machine writeup covers the full attack methodology — from initial reconnaissance through to flag capture — with tools, techniques, and key takeaways documented for each.
 
@@ -19,35 +19,35 @@ This repository documents my completed **Hack The Box Starting Point** labs as p
 
 ---
 
-## 🗺️ Machines Completed
+## Machines Completed
 
-### 🟢 Tier 0 — Fundamentals
+### Tier 0 — Fundamentals
 
-| Machine | Difficulty | Key Technique | Services | Flag |
-|---------|-----------|---------------|----------|------|
-| Meow | ⭐ Very Easy | Telnet Authentication | Telnet | ✅ |
-| Fawn | ⭐ Very Easy | FTP Anonymous Login | FTP | ✅ |
-| Dancing | ⭐ Very Easy | SMB Share Enumeration | SMB | ✅ |
-| Redeemer | ⭐ Very Easy | Redis Unauthenticated Access | Redis | ✅ |
+| Machine | Key Technique | Services |
+|---------|---------------|----------|
+| Meow | Telnet Authentication | Telnet |
+| Fawn | FTP Anonymous Login | FTP |
+| Dancing | SMB Share Enumeration | SMB |
+| Redeemer | Redis Unauthenticated Access | Redis |
 
-### 🟡 Tier 1 — Intermediate
+### Tier 1 — Intermediate
 
-| Machine | Difficulty | Key Technique | Services | Flag |
-|---------|-----------|---------------|----------|------|
-| Appointment | ⭐⭐ Easy | SQL Injection Auth Bypass | HTTP, MySQL | ✅ |
-| Sequel | ⭐⭐ Easy | MariaDB Enumeration | MySQL/MariaDB | ✅ |
-| Crocodile | ⭐⭐ Easy | FTP Credential Discovery + Web Auth | FTP, HTTP | ✅ |
-| Responder | ⭐⭐ Easy | NetNTLMv2 Hash Capture | SMB, HTTP | ✅ |
-
----
-
-## 🔬 Machine Writeups
-
-### 🟢 Tier 0
+| Machine | Key Technique | Services | Flag |
+|---------|---------------|----------|------|
+| Appointment | SQL Injection Auth Bypass | HTTP, MySQL |
+| Sequel | MariaDB Enumeration | MySQL/MariaDB |
+| Crocodile | FTP Credential Discovery + Web Auth | FTP, HTTP |
+| Responder | NetNTLMv2 Hash Capture | SMB, HTTP |
 
 ---
 
-#### 🐱 Meow
+## Machine Writeups
+
+### Tier 0
+
+---
+
+#### Meow
 **Objective:** Gain access to a Linux machine via an unsecured Telnet service.
 
 ```
@@ -66,7 +66,7 @@ Flag      →  cat flag.txt
 
 ---
 
-#### 🦢 Fawn
+#### Fawn
 **Objective:** Exploit anonymous FTP login to retrieve the flag.
 
 ```
@@ -85,7 +85,7 @@ Flag      →  get flag.txt
 
 ---
 
-#### 💃 Dancing
+#### Dancing
 **Objective:** Enumerate SMB shares and access files without valid credentials.
 
 ```
@@ -105,7 +105,7 @@ Flag      →  get flag.txt
 
 ---
 
-#### 🔴 Redeemer
+#### Redeemer
 **Objective:** Access an unauthenticated Redis database and extract the flag.
 
 ```
@@ -118,11 +118,11 @@ Flag      →  keys *, get flag
 
 ---
 
-### 🟡 Tier 1
+### Tier 1
 
 ---
 
-#### 📅 Appointment
+#### Appointment
 **Objective:** Bypass web application login using SQL injection.
 
 ```
@@ -142,7 +142,7 @@ Flag      →  Retrieved from web dashboard
 
 ---
 
-#### 🗃️ Sequel
+#### Sequel
 **Objective:** Enumerate a MariaDB instance and extract database contents.
 
 ```
@@ -156,7 +156,7 @@ Flag      →  select * from table;
 
 ---
 
-#### 🐊 Crocodile
+#### Crocodile
 **Objective:** Discover credentials via FTP and use them to authenticate to a web application.
 
 ```
@@ -170,7 +170,7 @@ Flag      →  Retrieved from web dashboard
 
 ---
 
-#### 📡 Responder
+#### Responder
 **Objective:** Capture NetNTLMv2 hashes via SMB authentication and crack them offline.
 
 ```
@@ -185,10 +185,10 @@ Crack     →  john hash.txt --wordlist=rockyou.txt  # Offline cracking
 
 ---
 
-## 📁 Repository Contents
+## Repository Contents
 
 ```
-📦 Hack-the-box-starting-point-labs
+Hack-the-box-starting-point-labs
 ├── 📄 README.md
 ├── 📋 Hack the Box Tier 0 - Hashan Kodippilige.pdf   ← Tier 0 writeups
 └── 📋 Hack the Box Tier 1 - Hashan Kodippilige.pdf   ← Tier 1 writeups
@@ -196,13 +196,13 @@ Crack     →  john hash.txt --wordlist=rockyou.txt  # Offline cracking
 
 ---
 
-## 🧠 Skills Demonstrated
+## Skills Demonstrated
 
 `Network Reconnaissance` `Nmap` `Telnet Exploitation` `FTP Enumeration` `SMB Enumeration` `Redis Exploitation` `SQL Injection` `Gobuster` `Directory Enumeration` `MariaDB Enumeration` `NetNTLMv2 Hash Capture` `Responder` `Password Cracking` `Kali Linux` `Offensive Security` `Hack The Box`
 
 ---
 
-## 💡 Real-World Relevance
+## Real-World Relevance
 
 These labs build foundational skills directly applicable to:
 - **Penetration Tester** roles — reconnaissance, enumeration, and exploitation methodology
@@ -212,13 +212,13 @@ These labs build foundational skills directly applicable to:
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 All activities were performed exclusively within the **authorized Hack The Box training platform** for educational and cybersecurity learning purposes. No unauthorized systems were accessed.
 
 ---
 
-## 👤 Author
+## Author
 
 **Hashan Kodippilige**  
 M.S. Cybersecurity — Minnesota State University Moorhead  
