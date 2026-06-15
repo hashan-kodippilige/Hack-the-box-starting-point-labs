@@ -1,256 +1,227 @@
-# Hack The Box - Starting Point Labs
+# 📦 Hack The Box — Starting Point Labs
 
-## Overview
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Hack%20The%20Box-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" />
+  <img src="https://img.shields.io/badge/Tier-0%20%26%201-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" />
+  <img src="https://img.shields.io/badge/Tool-Nmap%20%7C%20Metasploit%20%7C%20Gobuster-557C94?style=for-the-badge&logo=kalilinux&logoColor=white" />
+  <img src="https://img.shields.io/badge/Machines%20Completed-8-blue?style=for-the-badge" />
+</p>
 
-This repository contains my Hack The Box Starting Point Tier 0 and Tier 1 lab exercises completed as part of my M.S. Cybersecurity studies.
-
-The labs focus on developing fundamental offensive security skills including reconnaissance, service enumeration, authentication testing, web application assessment, database enumeration, and vulnerability identification.
-
----
-
-## Skills Demonstrated
-
-✔ Network Reconnaissance
-
-✔ Nmap Scanning
-
-✔ Service Enumeration
-
-✔ FTP Analysis
-
-✔ Telnet Enumeration
-
-✔ Web Application Security
-
-✔ SQL Injection Concepts
-
-✔ Directory Enumeration
-
-✔ Database Enumeration
-
-✔ SMB Authentication Attacks
-
-✔ Vulnerability Assessment
-
-✔ Security Reporting
+> 🎯 Hack The Box Starting Point writeups covering **8 machines** across Tier 0 and Tier 1 — demonstrating practical offensive security skills including network reconnaissance, service enumeration, FTP/Telnet/SMB exploitation, SQL injection, database enumeration, and authentication attacks.
 
 ---
 
-## Tools Used
+## 📌 Overview
 
-### Network Enumeration
+This repository documents my completed **Hack The Box Starting Point** labs as part of my M.S. Cybersecurity studies. Each machine writeup covers the full attack methodology — from initial reconnaissance through to flag capture — with tools, techniques, and key takeaways documented for each.
 
-- Nmap
-- Ping
-- Netcat
-
-### Web Security
-
-- Gobuster
-- Browser Developer Tools
-
-### Database Analysis
-
-- MySQL Client
-- MariaDB
-
-### Authentication Testing
-
-- FTP
-- Telnet
-- SMB
-
-### Operating Systems
-
-- Kali Linux
-- Linux Servers
-- Windows Systems
+**Platform:** [Hack The Box](https://www.hackthebox.com/) | **Environment:** Kali Linux via HTB VPN
 
 ---
 
-# Tier 0 Labs
+## 🗺️ Machines Completed
 
-## Meow
+### 🟢 Tier 0 — Fundamentals
 
-Topics Covered:
+| Machine | Difficulty | Key Technique | Services | Flag |
+|---------|-----------|---------------|----------|------|
+| Meow | ⭐ Very Easy | Telnet Authentication | Telnet | ✅ |
+| Fawn | ⭐ Very Easy | FTP Anonymous Login | FTP | ✅ |
+| Dancing | ⭐ Very Easy | SMB Share Enumeration | SMB | ✅ |
+| Redeemer | ⭐ Very Easy | Redis Unauthenticated Access | Redis | ✅ |
 
-- Network Connectivity Testing
-- Nmap Service Enumeration
-- Telnet Authentication
-- Remote System Access
+### 🟡 Tier 1 — Intermediate
 
-Skills:
-
-- Port Scanning
-- Service Identification
-- Telnet Security Assessment
-
----
-
-## Fawn
-
-Topics Covered:
-
-- FTP Enumeration
-- Anonymous Login Assessment
-- File Retrieval
-- Credential Exposure
-
-Skills:
-
-- FTP Security Testing
-- Authentication Review
-- Service Enumeration
+| Machine | Difficulty | Key Technique | Services | Flag |
+|---------|-----------|---------------|----------|------|
+| Appointment | ⭐⭐ Easy | SQL Injection Auth Bypass | HTTP, MySQL | ✅ |
+| Sequel | ⭐⭐ Easy | MariaDB Enumeration | MySQL/MariaDB | ✅ |
+| Crocodile | ⭐⭐ Easy | FTP Credential Discovery + Web Auth | FTP, HTTP | ✅ |
+| Responder | ⭐⭐ Easy | NetNTLMv2 Hash Capture | SMB, HTTP | ✅ |
 
 ---
 
-## Dancing
+## 🔬 Machine Writeups
 
-Topics Covered:
-
-- SMB Enumeration
-- Share Discovery
-- File Access
-
-Skills:
-
-- Windows Network Services
-- SMB Security Analysis
+### 🟢 Tier 0
 
 ---
 
-## Redeemer
+#### 🐱 Meow
+**Objective:** Gain access to a Linux machine via an unsecured Telnet service.
 
-Topics Covered:
+```
+Recon     →  nmap -sV <target>       # Discover open Telnet port 23
+Access    →  telnet <target>          # Connect with default/empty credentials
+Flag      →  cat flag.txt
+```
 
-- Redis Enumeration
-- Database Access
-- Information Retrieval
+| Step | Tool | Command |
+|------|------|---------|
+| Port scan | Nmap | `nmap -sV <target>` |
+| Service access | Telnet | `telnet <target>` |
+| Flag retrieval | Linux CLI | `ls`, `cat flag.txt` |
 
-Skills:
-
-- Database Security
-- Service Enumeration
-
----
-
-# Tier 1 Labs
-
-## Appointment
-
-Topics Covered:
-
-- Web Application Enumeration
-- SQL Injection Concepts
-- Authentication Bypass
-- Directory Discovery
-
-Skills:
-
-- Web Security Testing
-- SQL Injection
-- Gobuster Enumeration
+**Key Lesson:** Telnet transmits data in cleartext and should never be used in production — replace with SSH.
 
 ---
 
-## Sequel
+#### 🦢 Fawn
+**Objective:** Exploit anonymous FTP login to retrieve the flag.
 
-Topics Covered:
+```
+Recon     →  nmap -sV <target>       # Discover FTP port 21
+Access    →  ftp <target>             # Login as anonymous
+Flag      →  get flag.txt
+```
 
-- MariaDB Enumeration
-- Database Access
-- SQL Queries
-- Information Discovery
+| Step | Tool | Command |
+|------|------|---------|
+| Port scan | Nmap | `nmap -sV <target>` |
+| FTP login | FTP client | `ftp <target>` → user: `anonymous` |
+| Flag retrieval | FTP | `ls`, `get flag.txt` |
 
-Skills:
-
-- Database Security
-- SQL Fundamentals
-- Enumeration Techniques
-
----
-
-## Crocodile
-
-Topics Covered:
-
-- FTP Enumeration
-- Credential Discovery
-- Web Application Authentication
-
-Skills:
-
-- Multi-Service Enumeration
-- Information Gathering
-- Authentication Assessment
+**Key Lesson:** Anonymous FTP access is a critical misconfiguration that exposes sensitive files without authentication.
 
 ---
 
-## Responder
+#### 💃 Dancing
+**Objective:** Enumerate SMB shares and access files without valid credentials.
 
-Topics Covered:
+```
+Recon     →  nmap -sV <target>       # Discover SMB port 445
+Enumerate →  smbclient -L <target>   # List available shares
+Access    →  smbclient \\<target>\ShareName
+Flag      →  get flag.txt
+```
 
-- SMB Authentication
-- NetNTLMv2 Hash Capture
-- Credential Security
+| Step | Tool | Command |
+|------|------|---------|
+| Port scan | Nmap | `nmap -sV <target>` |
+| Share listing | smbclient | `smbclient -L //<target>/ -N` |
+| Share access | smbclient | `smbclient //<target>/<share> -N` |
 
-Skills:
-
-- Authentication Attacks
-- Windows Security
-- Credential Analysis
-
----
-
-## Learning Outcomes
-
-Through these labs I gained experience in:
-
-- Reconnaissance Methodologies
-- Enumeration Techniques
-- Authentication Security
-- Web Application Assessment
-- Database Enumeration
-- Network Service Analysis
-- Vulnerability Discovery
-- Offensive Security Fundamentals
+**Key Lesson:** SMB shares with null session access expose corporate file systems to unauthenticated attackers.
 
 ---
 
-## Repository Structure
+#### 🔴 Redeemer
+**Objective:** Access an unauthenticated Redis database and extract the flag.
 
-```text
-README.md
+```
+Recon     →  nmap -p 6379 <target>   # Discover Redis port
+Access    →  redis-cli -h <target>   # Connect without authentication
+Flag      →  keys *, get flag
+```
 
-Tier-0/
-├── Meow.pdf
-├── Fawn.pdf
-├── Dancing.pdf
-└── Redeemer.pdf
+**Key Lesson:** Redis instances exposed without authentication or network restrictions are trivially compromised.
 
-Tier-1/
-├── Appointment.pdf
-├── Sequel.pdf
-├── Crocodile.pdf
-└── Responder.pdf
+---
 
-Screenshots/
+### 🟡 Tier 1
+
+---
+
+#### 📅 Appointment
+**Objective:** Bypass web application login using SQL injection.
+
+```
+Recon     →  nmap -sV <target>            # Discover HTTP service
+Enumerate →  gobuster dir -u http://<target> -w wordlist.txt
+Exploit   →  SQL injection: admin'#       # Bypass authentication
+Flag      →  Retrieved from web dashboard
+```
+
+| Step | Tool | Technique |
+|------|------|-----------|
+| Port scan | Nmap | Service discovery |
+| Directory enum | Gobuster | Hidden path discovery |
+| Auth bypass | Browser | SQLi: `admin'#` |
+
+**Key Lesson:** Unsanitized SQL queries allow attackers to bypass authentication entirely — parameterized queries prevent this.
+
+---
+
+#### 🗃️ Sequel
+**Objective:** Enumerate a MariaDB instance and extract database contents.
+
+```
+Recon     →  nmap -sV <target>                     # Discover MySQL port 3306
+Access    →  mysql -h <target> -u root             # Login with default credentials
+Enumerate →  show databases; use db; show tables;
+Flag      →  select * from table;
+```
+
+**Key Lesson:** Default database credentials (`root` with no password) are a common and critical misconfiguration.
+
+---
+
+#### 🐊 Crocodile
+**Objective:** Discover credentials via FTP and use them to authenticate to a web application.
+
+```
+Recon     →  nmap -sV <target>           # Discover FTP + HTTP
+FTP Enum  →  ftp <target>               # Anonymous login, retrieve credential files
+Web Auth  →  Use found credentials at login page
+Flag      →  Retrieved from web dashboard
+```
+
+**Key Lesson:** Credentials stored in FTP-accessible files enable web application compromise — credential storage must be secured.
+
+---
+
+#### 📡 Responder
+**Objective:** Capture NetNTLMv2 hashes via SMB authentication and crack them offline.
+
+```
+Recon     →  nmap -sV <target>                     # Discover HTTP/SMB
+Setup     →  responder -I tun0                     # Start hash capture listener
+Trigger   →  Access UNC path via web app           # Force SMB authentication
+Capture   →  NetNTLMv2 hash captured
+Crack     →  john hash.txt --wordlist=rockyou.txt  # Offline cracking
+```
+
+**Key Lesson:** SMB authentication can be abused to capture and crack password hashes — network segmentation and SMB signing mitigate this.
+
+---
+
+## 📁 Repository Contents
+
+```
+📦 Hack-the-box-starting-point-labs
+├── 📄 README.md
+├── 📋 Hack the Box Tier 0 - Hashan Kodippilige.pdf   ← Tier 0 writeups
+└── 📋 Hack the Box Tier 1 - Hashan Kodippilige.pdf   ← Tier 1 writeups
 ```
 
 ---
 
-## Disclaimer
+## 🧠 Skills Demonstrated
 
-All activities were performed in authorized Hack The Box training environments for educational and cybersecurity learning purposes.
+`Network Reconnaissance` `Nmap` `Telnet Exploitation` `FTP Enumeration` `SMB Enumeration` `Redis Exploitation` `SQL Injection` `Gobuster` `Directory Enumeration` `MariaDB Enumeration` `NetNTLMv2 Hash Capture` `Responder` `Password Cracking` `Kali Linux` `Offensive Security` `Hack The Box`
 
 ---
 
-## Author
+## 💡 Real-World Relevance
 
-Master of Science in Cybersecurity
-Minnesota State University Moorhead
-Hashan Kodippilige
+These labs build foundational skills directly applicable to:
+- **Penetration Tester** roles — reconnaissance, enumeration, and exploitation methodology
+- **SOC Analyst** roles — understanding attacker techniques to detect them (TTPs)
+- **Security Engineer** roles — identifying and remediating common misconfigurations
+- **PhD Research** — empirical study of offensive security techniques and defensive countermeasures
 
-M.S. Cybersecurity
+---
 
-Splunk Dashboard Developer | Network Security | Ethical Hacking | Digital Forensics
+## ⚠️ Disclaimer
+
+All activities were performed exclusively within the **authorized Hack The Box training platform** for educational and cybersecurity learning purposes. No unauthorized systems were accessed.
+
+---
+
+## 👤 Author
+
+**Hashan Kodippilige**  
+M.S. Cybersecurity — Minnesota State University Moorhead  
+📧 hashansharindu@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/hashankodippilige/)  
+🐙 [GitHub](https://github.com/hashan-kodippilige)
